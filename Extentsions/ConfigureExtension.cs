@@ -33,9 +33,9 @@ public static class ConfigureExtension
             {
                 o.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer = configuration["JwtSettings:Issuer"] != null,
                     ValidIssuer = configuration["JwtSettings:Issuer"],
-                    ValidateAudience = true,
+                    ValidateAudience = configuration["JwwtSettings:Audience"] != null,
                     ValidAudience = configuration["JwtSettings:Audience"],
                     ValidateLifetime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(
