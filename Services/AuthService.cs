@@ -85,7 +85,7 @@ public class AuthService : IAuthService
         var claims = new List<Claim>() { new Claim("refreshToken", refreshToken) };
         await ctx.SignInAsync("refreshTokenCookie", new ClaimsPrincipal(new ClaimsIdentity(claims, "refreshToken")));
 
-        var result = new UserInfoDTO(user.Id, user.UserName, user.Email, token, refreshToken);
+        var result = new UserInfoDTO(user.UserName, user.Email, token, refreshToken);
         return Result<UserInfoDTO>.Success(result);
     }
 
