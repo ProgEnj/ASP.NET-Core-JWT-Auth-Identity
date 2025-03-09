@@ -5,12 +5,12 @@ namespace ControllersTest.Services;
 
 public interface IAuthService
 {
-    Task<ApplicationUser?> RegisterAsync(UserRegisterDTO request, HttpContext ctx);
-    Task<UserInfoDTO> LoginAsync(UserLoginDTO request, HttpContext ctx);
-    Task<ApplicationUser> ConfirmEmailAsync(string userId, string code);
-    Task SendConfirmationEmailAsync(ApplicationUser user, HttpContext ctx);
-    Task<ApplicationUser> ForgotPasswordEmailAsync(ForgotPasswordDTO request, HttpContext ctx);
-    Task<ApplicationUser> ResetPasswordAsync(ResetPasswordDTO request, HttpContext ctx);
-    Task<string?> RefreshAccessTokenAsync(HttpContext ctx);
-    Task<ApplicationUser> LogoutUserAsync(HttpContext ctx);
+    Task<Result> RegisterAsync(UserRegisterDTO request, HttpContext ctx);
+    Task<Result<UserInfoDTO>> LoginAsync(UserLoginDTO request, HttpContext ctx);
+    Task<Result> ConfirmEmailAsync(string userId, string code);
+    Task<Result> SendConfirmationEmailAsync(ApplicationUser user, HttpContext ctx);
+    Task<Result> ForgotPasswordEmailAsync(ForgotPasswordDTO request, HttpContext ctx);
+    Task<Result> ResetPasswordAsync(ResetPasswordDTO request, HttpContext ctx);
+    Task<Result<string>> RefreshAccessTokenAsync(HttpContext ctx);
+    Task<Result> LogoutUserAsync(HttpContext ctx);
 }

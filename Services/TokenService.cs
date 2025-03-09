@@ -24,7 +24,6 @@ public class TokenService : ITokenService
         var key = new SymmetricSecurityKey(
             Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JwtSettings:Token")));
         
-        // TODO: Sha512 or 256?
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
         var claims = new List<Claim>()
         {
@@ -35,7 +34,6 @@ public class TokenService : ITokenService
         var roles = await _userManager.GetRolesAsync(user);
         claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
         
-        // TODO: Token expiration time?
         var tokenDescripton = new JwtSecurityToken(
             issuer: _configuration.GetValue<string>("JwtSettings:Issuer"),
             audience: _configuration.GetValue<string>("JwtSettings:Audience"),
